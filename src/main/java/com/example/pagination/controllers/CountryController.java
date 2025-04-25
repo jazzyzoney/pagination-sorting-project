@@ -23,7 +23,7 @@ public class CountryController {
         this.popService = popService;
     }
 
-    @GetMapping("/countries/search")
+    @GetMapping("/search")
     public List<Country> searchCountries(@RequestParam String name) {
         return repo.findByNameContainingIgnoreCase(name);
     }
@@ -41,5 +41,10 @@ public class CountryController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(average);
+    }
+
+    @GetMapping("/byPopulation")
+    public List<Country> countriesByPopulation(@RequestParam long population) {
+        return repo.findAllByOrderByPopulation(population);
     }
 }

@@ -26,7 +26,6 @@ public class LanguageController {
 
     @GetMapping("/search")
     public List<CountryLanguage> byCountry(@RequestParam String country) {
-        String test = "DMK";
-        return repo.findByCountryCode(test);
+        return repo.findByCountryCode(country); // search a language by country
     }
 }
